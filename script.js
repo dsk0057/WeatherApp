@@ -82,6 +82,8 @@ document
         const desc = data.data[0].weather.description;
         const apparentTemp = data.data[0].app_temp;
         const humidity = data.data[0].rh;
+        const longitude = data.data[0].lon;
+        const latitude = data.data[0].lat;
 
         document.getElementById("location").innerText = loc;
         document.querySelector(
@@ -93,6 +95,25 @@ document
           "appTemp"
         ).innerText = `Feels like: ${apparentTemp}°F`;
         document.getElementById("humidity").innerText = `Humidity: ${humidity}`;
+
+        // Places to Go
+        const placesApiUrl = `https://api.geoapify.com/v2/places?categories=tourism.sights&filter=circle:${longitude},${latitude},5000&limit=5&apiKey=c32e036c734e40ff810b876b13905b54`;
+
+        fetch(placesApiUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            const place = document.getElementById("places_list");
+
+            while (place.firstChild) {
+              place.removeChild(place.firstChild);
+            }
+
+            data.features.forEach((element) => {
+              const child = document.createElement("li");
+              child.innerHTML = element.properties.name;
+              place.appendChild(child);
+            });
+          });
       });
   });
 
