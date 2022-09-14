@@ -1,4 +1,4 @@
-.container-fluid {
+#clock_div {
     display: flex;
     justify-content: center;
     background-image: url(https://images.unsplash.com/photo-1608311398550-24a725c0b9e0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80);
@@ -36,7 +36,7 @@ body {
   width: 500px;
   border-radius: 2rem;
   height: 3rem;
-  margin-top: 0.5rem;
+  margin-top: 0.1rem;
   border:1px solid whitesmoke; 
   outline: none;
   
