@@ -54,7 +54,7 @@ body {
     color: lightgoldenrodyellow;
     font-size: 50px;
     font-weight: bold;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     cursor: pointer
     
   }
@@ -77,3 +77,10 @@ body {
     color: #FFF;
     text-shadow:  0 0 10px #fff, 0 0 10px #fff,0 0 30px #fff;
   }
+  
+/* Giphy */
+.img_height {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}

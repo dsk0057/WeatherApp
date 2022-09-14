@@ -63,7 +63,6 @@ function runClock() {
 setInterval(runClock, 1000);
 
 // script for weather app
-
 const apiKey = "fa5d040af9254b09862fe801f0e26f5f";
 
 document
@@ -96,3 +95,53 @@ document
         document.getElementById("humidity").innerText = `Humidity: ${humidity}`;
       });
   });
+
+///Giphy
+const gifContainer = document.getElementById("gif_div");
+
+let defaultUrl = `https://api.giphy.com/v1/gifs/search?api_key=TQD7YnA17ndJS9PaRDHcfNq6atIsDjhR&q=weather`;
+
+fetch(defaultUrl)
+  .then((response) => response.json())
+  .then((data) => {
+    createImage(data);
+  });
+
+document
+  .querySelector(".material-symbols-outlined")
+  .addEventListener("click", (e) => {
+    const userInput = document
+      .querySelector("#search_input")
+      .value.toUpperCase();
+    const validCityInput =
+      userInput.charAt(0).toUpperCase() + userInput.slice(1);
+
+    const weatherApiUrl = `https://api.weatherbit.io/v2.0/current?&city=${validCityInput}&units=I&key=${apiKey}`;
+    fetch(weatherApiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        const desc = data.data[0].weather.description;
+        const dynamicSearchUrl = `https://api.giphy.com/v1/gifs/search?api_key=TQD7YnA17ndJS9PaRDHcfNq6atIsDjhR&q=${desc}`;
+
+        while (gifContainer.firstChild) {
+          gifContainer.removeChild(gifContainer.firstChild);
+        }
+        fetch(dynamicSearchUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            createImage(data);
+          });
+      });
+  });
+
+function createImage(data) {
+  for (const i in data.data) {
+    const gifColumn = document.createElement("div");
+    gifColumn.classList.add("col-xs-12", "col-sm-6", "col-md-3", "col-lg-2");
+    gifContainer.appendChild(gifColumn);
+    const myGifImage = document.createElement("img");
+    myGifImage.src = data.data[i].images.fixed_width_downsampled.url;
+    myGifImage.classList.add("img-thumbnail", "img_height");
+    gifColumn.appendChild(myGifImage);
+  }
+}
