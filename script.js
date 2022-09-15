@@ -161,7 +161,7 @@ function createImage(data) {
   }
 }
 
-// Places to Go
+// Places to Go near by
 document
   .querySelector(".material-symbols-outlined")
   .addEventListener("click", (e) => {
@@ -199,5 +199,36 @@ document
               place.appendChild(child);
             });
           });
+      });
+  });
+
+// Map for user input - City
+const mapContainer = document.getElementById("map_container");
+
+document
+  .querySelector(".material-symbols-outlined")
+  .addEventListener("click", (e) => {
+    const userInput = document
+      .querySelector("#search_input")
+      .value.toUpperCase();
+    const validCityInput =
+      userInput.charAt(0).toUpperCase() + userInput.slice(1);
+
+    const weatherApiUrl = `https://api.weatherbit.io/v2.0/current?&city=${validCityInput}&units=I&key=${apiKey}`;
+    fetch(weatherApiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        const longitude = data.data[0].lon;
+        const latitude = data.data[0].lat;
+
+        const mapApiUrl = `https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=400&height=250&center=lonlat:${longitude},${latitude}&zoom=11.0&marker=lonlat:-122.30645951994826,47.418034532210726;color:%23ff0000;size:medium&apiKey=e640158b99e9463e95663cd8b190bb39`;
+
+        while (mapContainer.firstChild) {
+          mapContainer.removeChild(mapContainer.firstChild);
+        }
+        const mapImg = document.createElement("img");
+        mapImg.classList.add("map_Img");
+        mapContainer.appendChild(mapImg);
+        mapImg.src = mapApiUrl;
       });
   });

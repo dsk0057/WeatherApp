@@ -96,17 +96,24 @@ body {
 /* Places */
 .places_container {
   color: lightgoldenrodyellow;
-  height: 400px;
-  padding-top: 2%;
+  height: 500px;
+  padding-top: 3%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
-.list_container {
+.left_box {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
+  margin-right: 4rem;
 }
 
 #list {
+  color: lightgoldenrodyellow;
   font-size: 30px;
   font-weight: bold;
   cursor: pointer;
@@ -120,4 +127,13 @@ body {
 
 #places_list {
   font-size: 20px;
+}
+
+.right_box {
+  padding: 2px;
+  background-color: white;
+  border-radius: 3%;
+}
+.map_Img {
+  margin: 5px;
 }
