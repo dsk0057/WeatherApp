@@ -1,10 +1,7 @@
+/* Style for Clock */
 #clock_div {
   display: flex;
   justify-content: center;
-  background-image: url(https://images.unsplash.com/photo-1608311398550-24a725c0b9e0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 
 body {
@@ -12,7 +9,6 @@ body {
 }
 
 /* Style for Weather App */
-
 .weather_container {
   background: radial-gradient(
     circle,
@@ -86,18 +82,18 @@ body {
   visibility: hidden;
 }
 
-/* Giphy */
+/* Style for Giphy */
 .img_height {
   width: 200px;
   height: 160px;
   object-fit: cover;
 }
 
-/* Places */
+/* Style for Places */
 .places_container {
   color: lightgoldenrodyellow;
   height: 500px;
-  padding-top: 3%;
+  padding-top: 1.5%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -136,4 +132,43 @@ body {
 }
 .map_Img {
   margin: 5px;
+}
+
+/* Style for Navbar*/
+#top_section{
+  background-image: url(https://images.unsplash.com/photo-1608311398550-24a725c0b9e0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+h5 {
+  color: #FFFF00;
+  font-size: 2.5rem;
+  letter-spacing: 10px;
+  cursor: pointer;
+  font-weight: bold;
+
+}
+
+h5 {
+  transition: .5s linear
+}
+
+h5:hover{
+  color: #fff;
+  text-shadow: 0 0 10px rgb(50, 41, 41),
+      0 0 10px #fff,
+      0 0 40px #fff;
+}
+
+.container_nav{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+#logo{
+  margin: 6px 25px;
+  border-radius:10px;
 }
