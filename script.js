@@ -64,13 +64,10 @@ setInterval(runClock, 1000);
 
 // script for weather app
 const apiKey = "fa5d040af9254b09862fe801f0e26f5f";
-
 document
   .querySelector(".material-symbols-outlined")
   .addEventListener("click", (e) => {
-    e.preventDefault();
-
-    const userInput = document.querySelector("#search_input").value;
+    let userInput = document.querySelector("#search_input").value;
     const weatherApiUrl = `https://api.weatherbit.io/v2.0/current?&city=${userInput}&units=I&key=${apiKey}`;
 
     fetch(weatherApiUrl)
@@ -89,12 +86,27 @@ document
         document.querySelector(
           ".icon"
         ).src = `https://www.weatherbit.io/static/img/icons/${icon}.png`;
-        document.getElementById("temperature").innerHTML = `${temp}°F`;
-        document.getElementById("description").innerText = desc;
-        document.getElementById(
-          "appTemp"
-        ).innerText = `Feels like: ${apparentTemp}°F`;
-        document.getElementById("humidity").innerText = `Humidity: ${humidity}`;
+        
+        //Select the elements and apply css properties and update value
+        const tempDivChild = document.getElementById("temp_info"); 
+        tempDivChild.innerText = `${temp}°F`;
+        tempDivChild.classList.add("weather_text_style"); 
+        tempDivChild.style.cssText = "visibility : visible";
+
+        const descDivChild = document.getElementById("cloud_info");
+        descDivChild.innerText = desc;
+        descDivChild.classList.add("weather_text_style"); 
+        descDivChild.style.cssText = "visibility : visible";
+
+        const appTempDivChild = document.getElementById("feels_Like_info");
+        appTempDivChild.innerText =`Feels like: ${apparentTemp}°F`;
+        appTempDivChild.classList.add("weather_text_style"); 
+        appTempDivChild.style.cssText = "visibility : visible";
+
+        const humidityDivChild = document.getElementById("humidity_info");
+        humidityDivChild.innerText = `Humidity: ${humidity}`;
+        humidityDivChild.classList.add("weather_text_style"); 
+        humidityDivChild.style.cssText = "visibility : visible";
 
         // Places to Go
         const placesApiUrl = `https://api.geoapify.com/v2/places?categories=tourism.sights&filter=circle:${longitude},${latitude},5000&limit=5&apiKey=c32e036c734e40ff810b876b13905b54`;
@@ -112,8 +124,10 @@ document
               const child = document.createElement("li");
               child.innerHTML = element.properties.name;
               place.appendChild(child);
+              
             });
           });
+          document.querySelector("#search_input").value ="";
       });
   });
 
@@ -156,13 +170,14 @@ document
   });
 
 function createImage(data) {
-  for (const i in data.data) {
+  for (let index = 0; index <= 5;  index++) {
     const gifColumn = document.createElement("div");
-    gifColumn.classList.add("col-xs-12", "col-sm-6", "col-md-3", "col-lg-2");
+    gifColumn.classList.add("col-sm-4", "col-md-3", "col-lg-2", "col-xl-1");
     gifContainer.appendChild(gifColumn);
     const myGifImage = document.createElement("img");
-    myGifImage.src = data.data[i].images.fixed_width_downsampled.url;
+    myGifImage.src = data.data[index].images.fixed_width_downsampled.url;
     myGifImage.classList.add("img-thumbnail", "img_height");
     gifColumn.appendChild(myGifImage);
+    
   }
 }
