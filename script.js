@@ -79,55 +79,34 @@ document
         const desc = data.data[0].weather.description;
         const apparentTemp = data.data[0].app_temp;
         const humidity = data.data[0].rh;
-        const longitude = data.data[0].lon;
-        const latitude = data.data[0].lat;
 
         document.getElementById("location").innerText = loc;
         document.querySelector(
           ".icon"
         ).src = `https://www.weatherbit.io/static/img/icons/${icon}.png`;
-        
+
         //Select the elements and apply css properties and update value
-        const tempDivChild = document.getElementById("temp_info"); 
+        const tempDivChild = document.getElementById("temp_info");
         tempDivChild.innerText = `${temp}°F`;
-        tempDivChild.classList.add("weather_text_style"); 
+        tempDivChild.classList.add("weather_text_style");
         tempDivChild.style.cssText = "visibility : visible";
 
         const descDivChild = document.getElementById("cloud_info");
         descDivChild.innerText = desc;
-        descDivChild.classList.add("weather_text_style"); 
+        descDivChild.classList.add("weather_text_style");
         descDivChild.style.cssText = "visibility : visible";
 
         const appTempDivChild = document.getElementById("feels_Like_info");
-        appTempDivChild.innerText =`Feels like: ${apparentTemp}°F`;
-        appTempDivChild.classList.add("weather_text_style"); 
+        appTempDivChild.innerText = `Feels like: ${apparentTemp}°F`;
+        appTempDivChild.classList.add("weather_text_style");
         appTempDivChild.style.cssText = "visibility : visible";
 
         const humidityDivChild = document.getElementById("humidity_info");
         humidityDivChild.innerText = `Humidity: ${humidity}`;
-        humidityDivChild.classList.add("weather_text_style"); 
+        humidityDivChild.classList.add("weather_text_style");
         humidityDivChild.style.cssText = "visibility : visible";
 
-        // Places to Go
-        const placesApiUrl = `https://api.geoapify.com/v2/places?categories=tourism.sights&filter=circle:${longitude},${latitude},5000&limit=5&apiKey=c32e036c734e40ff810b876b13905b54`;
-
-        fetch(placesApiUrl)
-          .then((response) => response.json())
-          .then((data) => {
-            const place = document.getElementById("places_list");
-
-            while (place.firstChild) {
-              place.removeChild(place.firstChild);
-            }
-
-            data.features.forEach((element) => {
-              const child = document.createElement("li");
-              child.innerHTML = element.properties.name;
-              place.appendChild(child);
-              
-            });
-          });
-          document.querySelector("#search_input").value ="";
+        document.querySelector("#search_input").value = "";
       });
   });
 
@@ -170,7 +149,7 @@ document
   });
 
 function createImage(data) {
-  for (let index = 0; index <= 5;  index++) {
+  for (let index = 0; index <= 5; index++) {
     const gifColumn = document.createElement("div");
     gifColumn.classList.add("col-sm-4", "col-md-3", "col-lg-2", "col-xl-1");
     gifContainer.appendChild(gifColumn);
@@ -178,6 +157,43 @@ function createImage(data) {
     myGifImage.src = data.data[index].images.fixed_width_downsampled.url;
     myGifImage.classList.add("img-thumbnail", "img_height");
     gifColumn.appendChild(myGifImage);
-    
   }
 }
+
+// Places to Go
+
+document
+  .querySelector(".material-symbols-outlined")
+  .addEventListener("click", (e) => {
+    const userInput = document
+      .querySelector("#search_input")
+      .value.toUpperCase();
+    const validCityInput =
+      userInput.charAt(0).toUpperCase() + userInput.slice(1);
+
+    const weatherApiUrl = `https://api.weatherbit.io/v2.0/current?&city=${validCityInput}&units=I&key=${apiKey}`;
+    fetch(weatherApiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        const longitude = data.data[0].lon;
+        const latitude = data.data[0].lat;
+
+        const placesApiUrl = `https://api.geoapify.com/v2/places?categories=tourism.sights&filter=circle:${longitude},${latitude},5000&limit=5&apiKey=c32e036c734e40ff810b876b13905b54`;
+
+        fetch(placesApiUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            const place = document.getElementById("places_list");
+
+            while (place.firstChild) {
+              place.removeChild(place.firstChild);
+            }
+            data.features.pop();
+            data.features.forEach((element) => {
+              const child = document.createElement("li");
+              child.innerHTML = element.properties.name;
+              place.appendChild(child);
+            });
+          });
+      });
+  });
