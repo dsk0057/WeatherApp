@@ -31,56 +31,79 @@
     <title>Weather App</title>
   </head>
   <body>
-    <div id="clock_div" class="container-fluid">
-      <canvas id="analog_clock" width="250px" height="250px"> </canvas>
-    </div>
-
-    <div class="weather_container container-fluid">
-      <div class="search_bar">
-        <div>
-          <input
-            id="search_input"
-            type="text"
-            placeholder="Enter City, State"
-          />
+  <main>
+    <section id="top_section">
+      <nav>
+        <div class="container container_nav">
+          <a class="navbar-brand" href="#">
+            <img id="logo" src="https://cdn.dribbble.com/users/2277649/screenshots/8498294/weather_dribbble_size.gif.gif" alt="Logo" width="40" height="45" class="d-inline-block align-text-top">
+          </a>
+          <div>
+            <h5>
+              WEDA MULTIPLEX
+            </h5>
+          </div>
         </div>
-        <div>
-          <span class="material-symbols-outlined"> search </span>
+      </nav>
+
+      <div id="clock_div" class="container-fluid">
+        <canvas id="analog_clock" width="200px" height="200px"> </canvas>
+      </div>
+    </section>
+
+    <section>
+      <div class="weather_container container-fluid">
+        <div class="search_bar">
+          <div>
+            <input
+              id="search_input"
+              type="text"
+              placeholder="Enter City, State"
+            />
+          </div>
+          <div>
+            <span class="material-symbols-outlined"> search </span>
+          </div>
+        </div>
+  
+        <div class="weather_info">
+          <div>
+            <h4 id="location">Welcome</h4>
+          </div>
+          <div>
+            <img
+              id="static_img"
+              src="https://image.winudf.com/v2/image/Y29tLmx1LmFzaGlvbndlYXRoZXJfaWNvbl8xNTAzNjAxNzA5XzA2NA/icon.png?w=&fakeurl=1"
+              alt=""
+              class="icon"
+            />
+          </div>
+          <div class ="weather_text_style" id="temperature"><h4 id="temp_info">81°F</h4></div>
+          <div class ="weather_text_style"  id="description"><h6 id="cloud_info">Cloudy</h6></div>
+          <div class ="weather_text_style"  id="appTemp"><h6 id="feels_Like_info">Feels like: 82°F</h6></div>
+          <div class ="weather_text_style"  id="humidity"><h6 id="humidity_info">Humidity: 50%</h4></div>
         </div>
       </div>
+    </section>
 
-      <div class="weather_info">
-        <div>
-          <h4 id="location">Welcome</h4>
-        </div>
-        <div>
-          <img
-            id="static_img"
-            src="https://image.winudf.com/v2/image/Y29tLmx1LmFzaGlvbndlYXRoZXJfaWNvbl8xNTAzNjAxNzA5XzA2NA/icon.png?w=&fakeurl=1"
-            alt=""
-            class="icon"
-          />
-        </div>
-        <div class ="weather_text_style" id="temperature"><h4 id="temp_info">81°F</h4></div>
-        <div class ="weather_text_style"  id="description"><h6 id="cloud_info">Cloudy</h6></div>
-        <div class ="weather_text_style"  id="appTemp"><h6 id="feels_Like_info">Feels like: 82°F</h6></div>
-        <div class ="weather_text_style"  id="humidity"><h6 id="humidity_info">Humidity: 50%</h4></div>
+    <section>
+      <div class="container-fluid text-center weather_container">
+        <div id="gif_div" class="row justify-content-center"></div>
       </div>
-    </div>
+    </section>
 
-    <div class="container-fluid text-center weather_container">
-      <div id="gif_div" class="row justify-content-center"></div>
-    </div>
+    <section>
+      <div class="places_container weather_container">
+        <div class="list_container left_box">
+          <h2 id="list">Let's go places....</h2>
+          <ul id="places_list"></ul>
+        </div>  
+        <div class="right_box" id="map_container">      
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <div class="places_container weather_container">
-      <div class="list_container left_box">
-      <h2 id="list">Let's go places....</h2>
-      <ul id="places_list"></ul>
-    </div>  
-
-    <div class="right_box" id="map_container">      
-    </div>
-  </div>
 
     <!-- Bootstrap JS -->
     <script
