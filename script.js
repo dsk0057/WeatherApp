@@ -177,6 +177,7 @@ document
       .then((data) => {
         const longitude = data.data[0].lon;
         const latitude = data.data[0].lat;
+        const city = data.data[0]["city_name"];
 
         const placesApiUrl = `https://api.geoapify.com/v2/places?categories=tourism.sights&filter=circle:${longitude},${latitude},5000&limit=5&apiKey=c32e036c734e40ff810b876b13905b54`;
 
@@ -189,6 +190,9 @@ document
               place.removeChild(place.firstChild);
             }
             data.features.pop();
+            document.getElementById(
+              "list"
+            ).innerText = `Places to visit near ${city}`;
             data.features.forEach((element) => {
               const child = document.createElement("li");
               child.innerHTML = element.properties.name;
