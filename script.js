@@ -63,7 +63,8 @@ function runClock() {
 setInterval(runClock, 1000);
 
 // script for weather app
-const apiKey = "fa5d040af9254b09862fe801f0e26f5f";
+// const apiKey = "fa5d040af9254b09862fe801f0e26f5f";
+const apiKey = "c433257478944cb18ad2f62ce3d803d3";
 document
   .querySelector(".material-symbols-outlined")
   .addEventListener("click", (e) => {
@@ -161,7 +162,6 @@ function createImage(data) {
 }
 
 // Places to Go
-
 document
   .querySelector(".material-symbols-outlined")
   .addEventListener("click", (e) => {
