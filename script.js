@@ -1,8 +1,8 @@
 function runClock() {
   const canvas = document.getElementById("analog_clock");
   //Method for drawing 2d canvas object
-  var context = canvas.getContext("2d");
-  var clockRadius = canvas.width / 2;
+  const context = canvas.getContext("2d");
+  const clockRadius = canvas.width / 2;
 
   //Drawing clock
   context.beginPath();
