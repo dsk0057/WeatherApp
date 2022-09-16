@@ -18,7 +18,6 @@ function runClock() {
 
   //Adding a number around the circle
   for (let index = 1; index <= 12; index++) {
-    //Dont ask me bro...google it
     context.fillText(
       index,
       clockRadius + clockRadius * 0.9 * Math.sin((index * 2 * Math.PI) / 12),
